@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Fire Map Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #111;
+      padding: 25px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00e0ff;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #00e0ff;
+      color: #000;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #00bcd4;
+    }
+    .result {
+      margin-top: 20px;
+      background: #1c1c1c;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Free Fire Map Info</h1><div class="form-group">
+  <label>Map Code</label>
+  <input type="text" id="map_code" placeholder="23FREEFIRE..." />
+</div>
+
+<div class="form-group">
+  <label>Region</label>
+  <select id="region">
+    <option value="IND">IND</option>
+    <option value="SG">SG</option>
+    <option value="BR">BR</option>
+    <option value="US">US</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>Language</label>
+  <select id="lang">
+    <option value="en">English</option>
+    <option value="ta">Tamil</option>
+    <option value="hi">Hindi</option>
+  </select>
+</div>
+
+<button onclick="getInfo()">Get Map Info</button>
+<button onclick="getDetails()">Get Map Details</button>
+
+<div class="result" id="result" style="display:none;">
+  <pre id="output"></pre>
+</div>
+
+  </div>  <script>
+    const API_BASE = "http://127.0.0.1:5000"; // change if deployed
+
+    async function getInfo() {
+      await callApi('/info');
+   
